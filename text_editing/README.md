@@ -32,6 +32,27 @@ Possible outputs (as the text editing operations are randomized):
  'super am very happy today know sad do you I']
 ```
 
+If you only want to do one or parts of the five text editing operations, you can call the corresponding functions separately. Please note that, in this case, 
+you need to pass a list of tokenized words to the function instead of a string. The parameters below are randomly given:
+
+```python
+from reda import REDA
+
+reda_en = REDA(lang='en')
+text = 'I am very happy today'
+text = reda_en.tokenize(text)
+# synonym replacement
+reda_en.replace_syn(text, rpl_num=2, out_num=5, out_str=False)
+# random swapping
+reda_en.swap_words(text, swap_num=2, out_num=5, out_str=True)
+# random insertion
+reda_en.insert_words(text, insert_num=2, out_num=5, out_str=True)
+# random deletion
+reda_en.delete_words(text, delete_num=2, out_num=5, out_str=True)
+# random mixes (random 2~4 of the 4 operations above)
+reda_en.mixed_edits(text, max_mix=3, out_num=5, out_str=False)
+```
+
 # Data
 
 For illustration purposes, the `syn_dics.zip` provides synonym dictionaries for playing with the `reda.py` script. You should unzip it in order to run the script. `syn_dics.zip ` comes with the following two dictionaries:
