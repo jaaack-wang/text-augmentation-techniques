@@ -13,16 +13,16 @@ You can click the `Word_Replacements.ipynb` file to see how the `wordReplacement
 from wordReplacement import WordsReplacement
 # works for English and use the embedding-based approach
 w_replace = WordsReplacement(lang='en', rpl_type='embd')
-w_replace.replace_word('I am very happy today', rpl_num=2, out_num=5)
+w_replace.replace_word('I am very happy today', rpl_num=2, out_num=5, out_str=True)
 ```
 
 Possible outputs (as the word replacement is randomized):
 
 ```cmd
-[['a', ' ', 'am', ' ', 'very', ' ', 'happy', ' ', 'today'],
- ['is', ' ', 'am', ' ', 'very', ' ', 'happy', ' ', 'today'],
- ['to', ' ', 'am', ' ', 'very', ' ', 'happy', ' ', 'today'],
- ['you', ' ', 'am', ' ', 'very', ' ', 'happy', ' ', 'today']]
+['a am very happy today',
+ 'the am very happy today',
+ 'to am very happy today',
+ 'you am very happy today']
 ```
 
 <a name='data'></a>
@@ -42,7 +42,7 @@ You can also use your own data as long as the data formats are compatible with t
 from wordReplacement import WordsReplacement
 
 # Initialization
-w_replace = WordsReplacement(rpl_type='embd', rpls_path='filepath_to_pre-trained_Arabic Embeddings', tokenizer='a_tokenizer_method_for_Arabic')
+w_replace = WordsReplacement(rpl_type='embd', rpls_path='filepath_to_pre-trained_Arabic_Embeddings', tokenizer='a_tokenizer_method_for_Arabic')
 ```
 
 

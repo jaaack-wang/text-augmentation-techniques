@@ -13,7 +13,8 @@ from gensim import models
 
 
 class WordsReplacement:
-    '''Augments texts by synonym-based or embeddings-based word replacements for both Chinese and English.
+    '''Augments texts by synonym-based or embeddings-based word replacements for both Chinese and English. The code
+    also works for other languages provided that proper data and setups are given.
 
     Parameters:
         lang (str): defaults to "zh" (Chinese). Also supports "en" (English).
@@ -21,13 +22,23 @@ class WordsReplacement:
         rpls_path (str): filepath to the pre-stored synonym or embedding files. If None, uses the default files.
         tokenizer (method): tokenizer for Chinese or English. Should be a function. If None, uses defaults tokenizers.
         topn (int): the number of nearest words to choose for embedding-based word replacements. Defaults to 5.
+        sep (str): separator. For Chinese, there is no separator between words; for English, that a space.
+
+    ####################
+    Usage:
+    ####################
+    from wordReplacement import WordsReplacement
+
+    w_replace_en = WordsReplacement(lang='en', rpl_type='embd')
+    w_replace_en.replace_word('I am very happy today', rpl_num=2, out_num=5, out_str=False)
     '''
     
-    def __init__(self, lang='zh', rpl_type='syn', rpls_path=None, tokenizer=None, topn=5):
+    def __init__(self, lang='zh', rpl_type='syn', rpls_path=None, tokenizer=None, topn=5, sep=None):
         self.lang = lang
         self.rpl_type = rpl_type
         self.rpls_path = rpls_path
         self.tokenize = tokenizer
+        self.sep = sep
         assert self.lang in ['zh', 'en'], 'self.lang must be either Chinese (zh) or English (en)'
         assert self.rpl_type in ['syn', 'embd'], 'self.rpl_type must be either synonym (syn) or embedding (embd)'
         
@@ -58,6 +69,12 @@ class WordsReplacement:
             else:
                 self.tokenize = lambda w: w.split()
 
+        if not self.sep:
+            if self.lang == 'zh':
+                self.sep = ''
+            else:
+                self.sep = ' '
+
     @staticmethod
     def _out(func, out_num):
         # a func to helps deduplicate the outputs
@@ -71,11 +88,10 @@ class WordsReplacement:
         out.sort()        
         return [o for o,_ in groupby(out)]
     
-    @staticmethod
-    def _out_str(words, out_str):
+    def _out_str(self, words, out_str):
         # a func to return the output in a right format 
         if out_str:
-            return ''.join(words)
+            return f'{self.sep}'.join(words)
         return words
     
     def replace_word(self, words, rpl_num=1, out_num=1, out_str=False):
