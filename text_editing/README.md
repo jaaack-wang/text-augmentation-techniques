@@ -64,15 +64,14 @@ For illustration purposes, the `syn_dics.zip` provides synonym dictionaries for 
 You can also use your own data as long as the data formats are compatible with the provided ones. In theory, you can apply `reda.py` script to other languages unmodified given proper data and setups. For example:
 
 ```python
-from wordReplacement import WordsReplacement
+from reda import REDA
 
 # Initialization
 syn_path ='filepath_Arabic_syn_dic'
 tokenizer ='a_tokenizer_method_for_Arabic'
-sep = 'separator_for_Abrabic_words'
-reda_ab = REDA(syn_path=syn_path, tokenizer=tokenizer, sep=sep)
+sep = 'separator_for_Arabic_words'
+reda_ara = REDA(syn_path=syn_path, tokenizer=tokenizer, sep=sep)
 ```
-
 
 
 # Notes
