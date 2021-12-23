@@ -20,37 +20,11 @@ reda_en.augment_text(text, out_num_each=1, max_out_num=10, out_str=True)
 Possible outputs (as the text editing operations are randomized):
 
 ```cmd
-['1 atomic_number_53 sad very happy today super am do you',
- 'I am dress happy today super sad very real you',
- 'I am rattling happy today super distressing do you know',
- 'I am very glad today tops sad do you know',
- 'I am very happy today super do you know',
- 'I am very happy today super sad you know',
- 'I am very happy well-chosen today super sad do you know',
- 'I am very rattling happy today super sad do you know',
- 'sad am very happy I super today do you know',
- 'super am very happy today know sad do you I']
-```
-
-If you only want to do one or parts of the five text editing operations, you can call the corresponding functions separately. Please note that, in this case, 
-you need to pass a list of tokenized words to the function instead of a string. The parameters below are randomly given:
-
-```python
-from reda import REDA
-
-reda_en = REDA(lang='en')
-text = 'I am very happy today'
-text = reda_en.tokenize(text)
-# synonym replacement
-reda_en.replace_syn(text, rpl_num=2, out_num=5, out_str=False)
-# random swapping
-reda_en.swap_words(text, swap_num=2, out_num=5, out_str=True)
-# random insertion
-reda_en.insert_words(text, insert_num=2, out_num=5, out_str=True)
-# random deletion
-reda_en.delete_words(text, delete_num=2, out_num=5, out_str=True)
-# random mixes (random 2~4 of the 4 operations above)
-reda_en.mixed_edits(text, max_mix=3, out_num=5, out_str=False)
+['I am rattling today well-chosen',
+ 'I am really happy today',
+ 'I am very today happy',
+ 'am selfsame today well-chosen happy',
+ 'happy am very I today']
 ```
 
 # Data
@@ -64,14 +38,15 @@ For illustration purposes, the `syn_dics.zip` provides synonym dictionaries for 
 You can also use your own data as long as the data formats are compatible with the provided ones. In theory, you can apply `reda.py` script to other languages unmodified given proper data and setups. For example:
 
 ```python
-from reda import REDA
+from wordReplacement import WordsReplacement
 
 # Initialization
 syn_path ='filepath_Arabic_syn_dic'
 tokenizer ='a_tokenizer_method_for_Arabic'
-sep = 'separator_for_Arabic_words'
-reda_ara = REDA(syn_path=syn_path, tokenizer=tokenizer, sep=sep)
+sep = 'separator_for_Abrabic_words'
+reda_ab = REDA(syn_path=syn_path, tokenizer=tokenizer, sep=sep)
 ```
+
 
 
 # Notes
