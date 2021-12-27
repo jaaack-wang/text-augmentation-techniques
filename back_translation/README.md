@@ -4,7 +4,7 @@ Back translation is a very reliable way to produce paraphrases and thus augment 
 
 `back_trans_model.py` provides a general class method to play with back translation, either for fun or for text augmentation. `back_translators.py` contains three sub-classes that implement the `back_trans_model.py` general class. These three back translators are three online translators I often use: [Baidu Transalte](https://fanyi.baidu.com/?aldtype=16047#auto/zh) (Chinese company), [Google Translate](https://translate.google.ca) (American company), and [Papago Translate](https://papago.naver.com) (Korean company).
 
-`GoogleBackTranslator` is provided for illustration purpose, so you can use it directly to see how the general back translator works. To use `BaiduBackTranslator` and `PapagoBackTranslator`, you need to apply for their cloud translation API at this two addresses respectively: [BaiduAPI](https://fanyi-api.baidu.com/product/11), [PapagoAPI](https://developers.naver.com/products/papago/nmt/nmt.md). However, due to verification, the application for the former requires a Chinese domestic phone number. You may also need to transalte the webpages if you do not understand Chinese or Korean. 
+`GoogleBackTranslator` is provided for illustration purpose, so you can use it directly to see how the general back translator works. To use `BaiduBackTranslator` and `PapagoBackTranslator`, you need to apply for their cloud translation API at the following two addresses respectively: [BaiduAPI](https://fanyi-api.baidu.com/product/11), [PapagoAPI](https://developers.naver.com/products/papago/nmt/nmt.md). However, the application for the former requires a Chinese domestic phone number for verification. You may also need to transalte the related webpages if you do not understand Chinese or Korean. 
 
 
 
@@ -62,7 +62,7 @@ You can click `BackTranslationIllustration.ipynb` to see the full illustration o
 ```
 
 - To track the entire translation process
-```
+```python
 >>> GBT.back_translate(query, mid_lang=['french', 'zh-cn', 'japanese'], all_mid_lang=True, out_dict=True)
 ```
 ```text
@@ -80,7 +80,7 @@ You can click `BackTranslationIllustration.ipynb` to see the full illustration o
 ```
 
 - Use `bulk_back_translate` for back translating a list of queries
-```
+```python
 # query can also be a list of texts too
 >>> GBT.bulk_back_translate([query, 'back translation is super fun'], mid_lang='ja')
 # output: ["I'm very happy today!", 'Reverse translation is a lot of fun']
@@ -89,14 +89,14 @@ You can click `BackTranslationIllustration.ipynb` to see the full illustration o
 
 ### Used for augmentation
 
-```
+```python
 >>> GBT.augment(query, mid_lang='korean', out_per_text=3)
 # Output: ['Today I am very happy!', 'Today, I am so happy!']
 ```
 
 ### Used for translation
 
-```
+```python
 # For one query
 >>> GBT.translate(query, src_lang='en', dst_lang='zh-cn')
 # Output: 今天，我很开心！
@@ -107,8 +107,7 @@ You can click `BackTranslationIllustration.ipynb` to see the full illustration o
 
 ### Used for fun 
 
-- if you know the history
-- Machine translation has improved a looot!
+- Machine translation has improved aaaaaaa loooooooot!
 ```python
 >>> query = 'The spirit is willing but the flesh is weak'
 >>> GBT.back_translate(query, mid_lang='russian')
